@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import logo from '../../static/logo.png'
-import { CSSTransition } from 'react-transition-group'
+import {CSSTransition} from 'react-transition-group'
 import {
   HeaderWrapper,
   Logo,
@@ -10,27 +10,16 @@ import {
   NavItem,
   Button
 } from './style'
+import {connect} from 'react-redux'
+import * as headerActionCreator from './store/actionCreator'
 
 class Header extends Component {
   constructor(props) {
     super(props)
-    this.onFocus = this.onFocus.bind(this)
-    this.onBlur = this.onBlur.bind(this)
-    this.state = {
-      focused: false
-    }
   }
-  onFocus() {
-    this.setState({
-      focused: true
-    })
-  }
-  onBlur() {
-    this.setState({
-      focused: false
-    })
-  }
+
   render() {
+    const {focused, onFocus, onBlur} = this.props
     return (
       <HeaderWrapper>
         <Logo><img src={logo} alt=""/></Logo>
@@ -38,10 +27,10 @@ class Header extends Component {
           <NavInner>
             <NavItem className='nav-firstPage'><a href="/">首页</a></NavItem>
             <NavItem className='nav-download'>下载App</NavItem>
-            <NavItem className={`nav-search ${this.state.focused ? 'focused' : ''}`}>
-              <CSSTransition in={this.state.focused} timeout={300} classNames='move'>
+            <NavItem className={`nav-search ${focused ? 'focused' : ''}`}>
+              <CSSTransition in={focused} timeout={300} classNames='move'>
                 <div className="inputWrapper">
-                  <input placeholder='搜索' type="text" onFocus={this.onFocus} onBlur={this.onBlur} />
+                  <input placeholder='搜索' type="text" onFocus={onFocus} onBlur={onBlur}/>
                   <span className='search-icon-wrapper'>
                   <i className='iconfont search-icon'>&#xe6d7;</i>
                 </span>
@@ -68,6 +57,32 @@ class Header extends Component {
       </HeaderWrapper>
     )
   }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    console.log('component will update', nextProps)
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('component did update', prevProps)
+  }
 }
 
-export default Header
+const mapStateToProps = (state) => {
+  return {
+    focused: state.getIn(['header', 'focused'])
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFocus() {
+      const action = headerActionCreator.createSearchFocusAction()
+      dispatch(action)
+    },
+    onBlur() {
+      const action = headerActionCreator.createSearchBlurAction()
+      dispatch(action)
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
