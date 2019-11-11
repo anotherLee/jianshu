@@ -140,3 +140,37 @@ export const Button = styled.button`
     }
   }
 `
+
+export const KeywordsWrapper = styled.div`
+  position: absolute; top: calc(100% + 8px); left: 0;
+  width: 240px;
+  padding: 15px;
+  box-shadow: 0 0 8px rgba(0,0,0,.2);
+  border-radius: 5px;
+  .title {
+    display: flex; justify-content: space-between;
+    color: #999;
+    .hotSearch {
+      font-size: 16px;
+    }
+    .changeAnother {
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+  .keywords {
+    display: flex; align-items: center; flex-wrap: wrap;
+    padding-top: 10px;
+    color: #787878;
+    >li {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0.2em 0.5em;
+      margin: 5px;
+      border: 1px solid #999;
+      font-size: 12px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  }
+`

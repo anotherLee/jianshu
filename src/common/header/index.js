@@ -8,7 +8,8 @@ import {
   Register,
   NavInner,
   NavItem,
-  Button
+  Button,
+  KeywordsWrapper
 } from './style'
 import {connect} from 'react-redux'
 import * as headerActionCreator from './store/actionCreator'
@@ -18,8 +19,30 @@ class Header extends Component {
     super(props)
   }
 
+  getKeywords() {
+    const { focused, list } = this.props
+    if (focused) {
+      return (
+        <KeywordsWrapper>
+          <div className="title">
+            <span className='hotSearch'>热门搜索</span>
+            <span className='changeAnother'>换一换</span>
+          </div>
+          <ul className='keywords'>
+            {
+              list.map(item => {
+                return <li key={item}>{item}</li>
+              })
+            }
+          </ul>
+        </KeywordsWrapper>
+      )
+    }
+    return null
+  }
+
   render() {
-    const {focused, onFocus, onBlur} = this.props
+    const { focused, onFocus, onBlur } = this.props
     return (
       <HeaderWrapper>
         <Logo><img src={logo} alt=""/></Logo>
@@ -32,8 +55,11 @@ class Header extends Component {
                 <div className="inputWrapper">
                   <input placeholder='搜索' type="text" onFocus={onFocus} onBlur={onBlur}/>
                   <span className='search-icon-wrapper'>
-                  <i className='iconfont search-icon'>&#xe6d7;</i>
-                </span>
+                    <i className='iconfont search-icon'>&#xe6d7;</i>
+                  </span>
+                  {
+                    this.getKeywords()
+                  }
                 </div>
               </CSSTransition>
             </NavItem>
@@ -61,6 +87,7 @@ class Header extends Component {
   componentWillUpdate(nextProps, nextState, nextContext) {
     console.log('component will update', nextProps)
   }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('component did update', prevProps)
   }
@@ -68,15 +95,16 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    focused: state.getIn(['header', 'focused'])
+    focused: state.getIn(['header', 'focused']),
+    list: state.getIn(['header', 'list'])
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onFocus() {
-      const action = headerActionCreator.createSearchFocusAction()
-      dispatch(action)
+      dispatch(headerActionCreator.createSearchFocusAction())
+      dispatch(headerActionCreator.getHeaderList())
     },
     onBlur() {
       const action = headerActionCreator.createSearchBlurAction()
