@@ -31,6 +31,12 @@ export const Article = styled.li`
       font-size: 18px;
       font-weight: 700;
       color: #333;
+      >a {
+        color: inherit;
+        &:visited {
+          color: inherit;
+        }
+      }
     }
     .article-desc {
       line-height: 24px;

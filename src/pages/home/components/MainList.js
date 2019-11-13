@@ -8,6 +8,7 @@ import {
   NoData
 } from '../style'
 import {createGetListAction, createReadMoreAction} from '../store/actionCreators'
+import {Link} from 'react-router-dom'
 
 class MainList extends Component {
   renderArticleItem() {
@@ -17,7 +18,9 @@ class MainList extends Component {
       return (
         <Article key={item.id}>
           <div className="article-main">
-            <div className="article-title">{ item.title }</div>
+            <div className="article-title">
+              <Link to='/detail'>{item.title}</Link>
+            </div>
             <div className="article-desc">{item.description}</div>
             <div className="article-info">
               <span className="article-star">
@@ -31,7 +34,7 @@ class MainList extends Component {
               </span>
             </div>
           </div>
-          { item.imgUrl ? <img src={item.imgUrl} alt="" className="article-photo"/> : null }
+          {item.imgUrl ? <img src={item.imgUrl} alt="" className="article-photo"/> : null}
         </Article>
       )
     })
@@ -41,7 +44,7 @@ class MainList extends Component {
     const { list, readMore } = this.props
     return (
       <ListWrapper>
-        <a target='_blank' rel="noopener noreferrer"  href="http://product.dangdang.com/28471013.html">
+        <a target='_blank' rel="noopener noreferrer" href="http://product.dangdang.com/28471013.html">
           <img className='banner' src="https://i.loli.net/2019/11/12/4b81zwta7PqrHgL.jpg" alt=""/>
         </a>
         <ArticleList>
@@ -49,8 +52,8 @@ class MainList extends Component {
         </ArticleList>
         {
           list.size >= 15
-          ? <NoData>没有更多了</NoData>
-          : <BottomButton onClick={ e => readMore() }>阅读更多</BottomButton>
+            ? <NoData>没有更多了</NoData>
+            : <BottomButton onClick={e => readMore()}>阅读更多</BottomButton>
         }
 
       </ListWrapper>
