@@ -46,7 +46,7 @@ class Header extends Component {
     const { focused, list, onFocus, onBlur } = this.props
     return (
       <HeaderWrapper>
-        <Link to='/'>
+        <Link to='/jianshu-preview'>
           <Logo><img src={logo} alt=""/></Logo>
         </Link>
         <Nav>
