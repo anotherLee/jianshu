@@ -6,18 +6,14 @@ export const HeaderWrapper = styled.div`
   border-bottom: 1px solid #f0f0f0;
   >a {
     flex: 1;
+    display: inline-block;
+    height: 100%;
+    img {
+      width: 100px; height: 100%;
+      object-fit: cover;
+    }
   }
 `
-
-export const Logo = styled.a`
-  display: inline-block;
-  height: 100%;
-  img {
-    width: 100px; height: 100%;
-    object-fit: cover;
-  }
-`
-
 export const Nav = styled.div`
   display: flex; align-items: center; justify-content: space-between;
   flex-basis: 960px; height: 100%;

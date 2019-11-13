@@ -152,3 +152,16 @@ export const SeeAllAuthor = styled('button')`
     outline: none;
   }
 `
+
+export const BackTop = styled('div')`
+  display: flex; justify-content: center; align-items: center;
+  position: fixed; right: 100px; bottom: 100px;
+  width: 50px; height: 50px;
+  border: 1px solid #dcdcdc;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  .backTop {
+    font-size: 30px;
+    color: #666;
+  }
+`

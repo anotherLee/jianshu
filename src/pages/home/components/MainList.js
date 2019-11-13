@@ -5,12 +5,22 @@ import {
   ArticleList,
   Article,
   BottomButton,
-  NoData
+  NoData,
+  BackTop
 } from '../style'
 import {createGetListAction, createReadMoreAction} from '../store/actionCreators'
 import {Link} from 'react-router-dom'
 
 class MainList extends Component {
+  constructor(props) {
+    super(props)
+    this.handleScroll = this.handleScroll.bind(this)
+    this.backTop = this.backTop.bind(this)
+    this.state = {
+      scrollTop: 0
+    }
+  }
+
   renderArticleItem() {
     const { list } = this.props
     const jsList = list.toJS()
@@ -19,7 +29,7 @@ class MainList extends Component {
         <Article key={item.id}>
           <div className="article-main">
             <div className="article-title">
-              <Link to='/jianshu/build/detail'>{item.title}</Link>
+              <Link to={ '/detail/' + item.articleId}>{item.title}</Link>
             </div>
             <div className="article-desc">{item.description}</div>
             <div className="article-info">
@@ -55,13 +65,45 @@ class MainList extends Component {
             ? <NoData>没有更多了</NoData>
             : <BottomButton onClick={e => readMore()}>阅读更多</BottomButton>
         }
-
+        {
+          this.state.scrollTop > 150
+            ? <BackTop onClick={this.backTop}><i className='iconfont backTop'>&#xe600;</i></BackTop>
+            : null
+        }
       </ListWrapper>
     )
   }
 
+  handleScroll() {
+    const scrollTop = document.documentElement.scrollTop
+    this.setState({
+      scrollTop
+    })
+  }
+
+  backTop() {
+    if (this.state.scrollTop > 0) {
+      this.setState((prevState) => ({
+        scrollTop: prevState.scrollTop - 40
+      }), () => {
+        window.scrollTo(0, this.state.scrollTop)
+        requestAnimationFrame(this.backTop)
+      })
+    } else {
+      window.scrollTo(0, 0)
+      this.setState({
+        scrollTop: 0
+      })
+    }
+  }
+
   componentDidMount() {
     this.props.getArticleList()
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 
 }

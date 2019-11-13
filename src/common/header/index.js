@@ -3,7 +3,6 @@ import logo from '../../static/logo.png'
 import {CSSTransition} from 'react-transition-group'
 import {
   HeaderWrapper,
-  Logo,
   Nav,
   Register,
   NavInner,
@@ -47,11 +46,11 @@ class Header extends Component {
     return (
       <HeaderWrapper>
         <Link to='/jianshu/build'>
-          <Logo><img src={logo} alt=""/></Logo>
+          <img src={logo} alt=""/>
         </Link>
         <Nav>
           <NavInner>
-            <NavItem className='nav-firstPage'><a href="/">首页</a></NavItem>
+            <NavItem className='nav-firstPage'><Link to='/jianshu/build'>首页</Link></NavItem>
             <NavItem className='nav-download'>下载App</NavItem>
             <NavItem className={`nav-search ${focused ? 'focused' : ''}`}>
               <CSSTransition in={focused} timeout={300} classNames='move'>

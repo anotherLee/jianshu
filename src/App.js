@@ -15,10 +15,10 @@ function App() {
       <GlobalIcon/>
       <BrowserRouter>
         <Header/>
-        <Route path='/jianshu/build' exact>
+        <Route path='/' exact>
           <Home />
         </Route>
-        <Route path='/jianshu/build/detail' exact>
+        <Route path='/detail/:id' exact>
           <Detail />
         </Route>
       </BrowserRouter>
