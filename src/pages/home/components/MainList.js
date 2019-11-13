@@ -19,7 +19,7 @@ class MainList extends Component {
         <Article key={item.id}>
           <div className="article-main">
             <div className="article-title">
-              <Link to='/jianshu-preview/detail'>{item.title}</Link>
+              <Link to='/jianshu/build/detail'>{item.title}</Link>
             </div>
             <div className="article-desc">{item.description}</div>
             <div className="article-info">
