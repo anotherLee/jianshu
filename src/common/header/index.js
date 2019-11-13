@@ -13,24 +13,25 @@ import {
 } from './style'
 import {connect} from 'react-redux'
 import * as headerActionCreator from './store/actionCreator'
+import { Link } from 'react-router-dom'
 
 class Header extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   getKeywords() {
-    const { focused, list } = this.props
-    if (focused) {
+    const { focused, mouseIn, list, currentPage, handleMouseEnter, handleMouseLeave, changeHeaderList } = this.props
+    const currentRange = list.toJS().slice((currentPage - 1) * 10, currentPage * 10)
+    if ((focused || mouseIn) && currentRange.length > 0) {
       return (
-        <KeywordsWrapper>
+        <KeywordsWrapper onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className="title">
             <span className='hotSearch'>热门搜索</span>
-            <span className='changeAnother'>换一换</span>
+            <span className='changeAnother' onClick={ e => changeHeaderList(currentPage + 1, this.spin)}>
+              <i className='iconfont spin' ref={ dom => this.spin = dom }>&#xe851;</i>
+              换一换
+            </span>
           </div>
           <ul className='keywords'>
             {
-              list.map(item => {
+              currentRange.map(item => {
                 return <li key={item}>{item}</li>
               })
             }
@@ -42,10 +43,12 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, onFocus, onBlur } = this.props
+    const { focused, list, onFocus, onBlur } = this.props
     return (
       <HeaderWrapper>
-        <Logo><img src={logo} alt=""/></Logo>
+        <Link to='/'>
+          <Logo><img src={logo} alt=""/></Logo>
+        </Link>
         <Nav>
           <NavInner>
             <NavItem className='nav-firstPage'><a href="/">首页</a></NavItem>
@@ -53,7 +56,7 @@ class Header extends Component {
             <NavItem className={`nav-search ${focused ? 'focused' : ''}`}>
               <CSSTransition in={focused} timeout={300} classNames='move'>
                 <div className="inputWrapper">
-                  <input placeholder='搜索' type="text" onFocus={onFocus} onBlur={onBlur}/>
+                  <input placeholder='搜索' type="text" onFocus={ e => onFocus(list)} onBlur={onBlur}/>
                   <span className='search-icon-wrapper'>
                     <i className='iconfont search-icon'>&#xe6d7;</i>
                   </span>
@@ -85,30 +88,50 @@ class Header extends Component {
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    console.log('component will update', nextProps)
+    // console.log('component will update', nextProps)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('component did update', prevProps)
+    // console.log('component did update', prevProps)
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', 'focused']),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    mouseIn: state.getIn(['header', 'mouseIn']),
+    currentPage: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage'])
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFocus() {
+    onFocus(list) {
       dispatch(headerActionCreator.createSearchFocusAction())
-      dispatch(headerActionCreator.getHeaderList())
+      list.size === 0 && dispatch(headerActionCreator.getHeaderList())
     },
     onBlur() {
       const action = headerActionCreator.createSearchBlurAction()
       dispatch(action)
+    },
+    handleMouseEnter() {
+      dispatch(headerActionCreator.createMouseEnterAction())
+    },
+    handleMouseLeave() {
+      dispatch(headerActionCreator.createMouseLeaveAction())
+    },
+    changeHeaderList(value, spin) {
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig, '')
+      if (originAngle) {
+        originAngle = parseInt(originAngle)
+      } else {
+        originAngle = 0
+      }
+      spin.style.transform = `rotate(${originAngle + 360}deg)`
+
+      dispatch(headerActionCreator.createListChangeAction(value))
     }
   }
 }

@@ -4,12 +4,12 @@ export const HeaderWrapper = styled.div`
   display: flex;
   height: 56px;
   border-bottom: 1px solid #f0f0f0;
+  >a {
+    flex: 1;
+  }
 `
 
-export const Logo = styled.a.attrs({
-  href: '/'
-})`
-  flex: 1;
+export const Logo = styled.a`
   display: inline-block;
   height: 100%;
   img {
@@ -147,6 +147,7 @@ export const KeywordsWrapper = styled.div`
   padding: 15px;
   box-shadow: 0 0 8px rgba(0,0,0,.2);
   border-radius: 5px;
+  background-color: #fff;
   .title {
     display: flex; justify-content: space-between;
     color: #999;
@@ -154,8 +155,13 @@ export const KeywordsWrapper = styled.div`
       font-size: 16px;
     }
     .changeAnother {
+      display: inline-flex; align-items: center;
       font-size: 14px;
       cursor: pointer;
+      .spin {
+        transition: transform 0.2s linear;
+        font-size: 12px;
+      }
     }
   }
   .keywords {

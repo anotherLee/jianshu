@@ -1,6 +1,11 @@
-import {SEARCH_FOCUS, SEARCH_BLUR, CHANGE_LIST} from './actionTypes'
+import {SEARCH_FOCUS, SEARCH_BLUR, CHANGE_LIST, MOUSE_ENTER, MOUSE_LEAVE, LIST_CHANGE} from './actionTypes'
 import { acquireHeaderList } from '../../../api/'
 import { fromJS } from 'immutable'
+
+const createListAction = (list) => ({
+  type: CHANGE_LIST,
+  value: fromJS(list)
+})
 
 export const createSearchFocusAction = () => ({
   type: SEARCH_FOCUS
@@ -8,11 +13,6 @@ export const createSearchFocusAction = () => ({
 
 export const createSearchBlurAction = () => ({
   type: SEARCH_BLUR
-})
-
-const createListAction = (list) => ({
-  type: CHANGE_LIST,
-  value: fromJS(list)
 })
 
 export const getHeaderList = () => {
@@ -24,3 +24,16 @@ export const getHeaderList = () => {
     })
   }
 }
+
+export const createMouseEnterAction = () => ({
+  type: MOUSE_ENTER
+})
+
+export const createMouseLeaveAction = () => ({
+  type: MOUSE_LEAVE
+})
+
+export const createListChangeAction = (value) => ({
+  type: LIST_CHANGE,
+  value
+})
