@@ -33,8 +33,12 @@ export const Article = styled.li`
       color: #333;
       >a {
         color: inherit;
+        text-decoration: none;
         &:visited {
           color: inherit;
+        }
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
