@@ -29,7 +29,7 @@ class MainList extends Component {
         <Article key={item.id}>
           <div className="article-main">
             <div className="article-title">
-              <Link to={ 'jianshu/build/detail/' + item.articleId}>{item.title}</Link>
+              <Link to={ '/jianshu/build/detail/' + item.articleId}>{item.title}</Link>
             </div>
             <div className="article-desc">{item.description}</div>
             <div className="article-info">
