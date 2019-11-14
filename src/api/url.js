@@ -1,5 +1,6 @@
 
 const rootUrl = 'https://www.fastmock.site/mock/c76ae0b34ee0804f410436dc2b087068/simple'
+const devOrigin = window.location.origin
 
 const headerUrl = {
   headerListUrl: rootUrl + '/headerList',
@@ -11,4 +12,8 @@ const homeUrl = {
   getAuthor: rootUrl + '/getRecommend'
 }
 
-export { headerUrl, homeUrl }
+const detailUrl = {
+  getArticle: devOrigin + '/api/articles.json'
+}
+
+export { headerUrl, homeUrl, detailUrl }

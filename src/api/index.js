@@ -1,4 +1,4 @@
-import { headerUrl, homeUrl } from "./url"
+import { headerUrl, homeUrl, detailUrl } from "./url"
 import axios from 'axios'
 
 export const acquireHeaderList = () => {
@@ -25,6 +25,14 @@ export const acquireMoreArticle = () => {
 export const acquireAuthor = () => {
   return axios({
     url: homeUrl.getAuthor,
+    method: 'get'
+  })
+}
+
+export const acquireArticle = () => {
+  console.log(detailUrl.getArticle)
+  return axios({
+    url: detailUrl.getArticle,
     method: 'get'
   })
 }

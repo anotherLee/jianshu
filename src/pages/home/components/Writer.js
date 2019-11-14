@@ -20,7 +20,7 @@ class Writer extends Component {
           <img className='writerAvatar' src={author.url} alt=""/>
           <div className='writerInfo'>
             <span className='writerName'>{author.name}</span>
-            <span className='counts'>写了{author.counts}字 ∙ {author.likeCount}</span>
+            <span className='counts'>写了{author.counts}字 ∙ {author.likeCount}喜欢</span>
           </div>
         </WriterItem>
       )

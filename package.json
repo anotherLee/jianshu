@@ -140,6 +140,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "homepage": "/jianshu/build"
+  }
 }

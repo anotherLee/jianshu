@@ -15,12 +15,8 @@ function App() {
       <GlobalIcon/>
       <BrowserRouter>
         <Header/>
-        <Route path='/' exact>
-          <Home />
-        </Route>
-        <Route path='/detail/:id' exact>
-          <Detail />
-        </Route>
+        <Route path='/jianshu/build' exact component={Home} />
+        <Route path='/jianshu/build/detail/:id' exact component={Detail} />
       </BrowserRouter>
     </Provider>
   )
