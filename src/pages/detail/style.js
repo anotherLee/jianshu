@@ -5,7 +5,8 @@ export const ArticleWrapper = styled('div')`
   min-height: calc(100vh - 56px);
   background-color: #f9f9f9;
   .article {
-    width: 730px; height: 100%;
+    min-height: cal(100vh - 66px);
+    width: 730px;
     margin-top: 10px; padding: 24px;
     background-color: #fff;
     border-radius: 5px;
@@ -33,7 +34,7 @@ export const ArticleWrapper = styled('div')`
           margin-top: 3px;
           display: inline-flex; align-items: center;
           .author-name { font-weight: bold; }
-          .badge { margin-left: 5px; vertical-align: middle }
+          .badge { margin-left: 5px; vertical-align: middle; }
           .badge > img { vertical-align: middle; width: 16px; height: 16px; }
         }
         >.article-detail{
@@ -45,7 +46,7 @@ export const ArticleWrapper = styled('div')`
       }
     }
     .article-content {
-      >p {
+      p {
         line-height: 1.8;
         margin:32px 0 20px;
         color: rgb(64,64,64);

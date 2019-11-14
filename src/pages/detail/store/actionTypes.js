@@ -1,1 +1,1 @@
-export const GET_ARTICLE = 'detail/get_article'
+export const CHANGE_ARTICLE = 'detail/change_article'

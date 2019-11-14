@@ -30,7 +30,6 @@ export const acquireAuthor = () => {
 }
 
 export const acquireArticle = () => {
-  console.log(detailUrl.getArticle)
   return axios({
     url: detailUrl.getArticle,
     method: 'get'
