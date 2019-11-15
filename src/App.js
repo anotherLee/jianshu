@@ -17,7 +17,7 @@ function App() {
       <GlobalIcon/>
       <BrowserRouter>
         <Header/>
-        <Route path='/' exact component={Home} />
+        <Route path='/jianshu/build' exact component={Home} />
         <Route path='/jianshu/build/detail/:id' exact component={Detail} />
         <Route path='/jianshu/build/signLogin' component={RegisterLogin} />
       </BrowserRouter>
