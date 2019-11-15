@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import logo from '../../static/logo.png'
 import {CSSTransition} from 'react-transition-group'
 import {
@@ -12,9 +12,15 @@ import {
 } from './style'
 import {connect} from 'react-redux'
 import * as headerActionCreator from './store/actionCreator'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class Header extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      show: true
+    }
+  }
   getKeywords() {
     const { focused, mouseIn, list, currentPage, handleMouseEnter, handleMouseLeave, changeHeaderList } = this.props
     const currentRange = list.toJS().slice((currentPage - 1) * 10, currentPage * 10)
@@ -44,54 +50,73 @@ class Header extends Component {
   render() {
     const { focused, list, onFocus, onBlur } = this.props
     return (
-      <HeaderWrapper>
-        <Link to='/jianshu/build'>
-          <img src={logo} alt=""/>
-        </Link>
-        <Nav>
-          <NavInner>
-            <NavItem className='nav-firstPage'><Link to='/jianshu/build'>首页</Link></NavItem>
-            <NavItem className='nav-download'>下载App</NavItem>
-            <NavItem className={`nav-search ${focused ? 'focused' : ''}`}>
-              <CSSTransition in={focused} timeout={300} classNames='move'>
-                <div className="inputWrapper">
-                  <input placeholder='搜索' type="text" onFocus={ e => onFocus(list)} onBlur={onBlur}/>
-                  <span className='search-icon-wrapper'>
+      <Fragment>
+        {
+          !this.state.show
+          ? null
+          :
+            <HeaderWrapper>
+              <Link to='/jianshu/build'>
+                <img src={logo} alt=""/>
+              </Link>
+              <Nav>
+                <NavInner>
+                  <NavItem className='nav-firstPage'><Link to='/jianshu/build'>首页</Link></NavItem>
+                  <NavItem className='nav-download'>下载App</NavItem>
+                  <NavItem className={`nav-search ${focused ? 'focused' : ''}`}>
+                    <CSSTransition in={focused} timeout={300} classNames='move'>
+                      <div className="inputWrapper">
+                        <input placeholder='搜索' type="text" onFocus={ e => onFocus(list)} onBlur={onBlur}/>
+                        <span className='search-icon-wrapper'>
                     <i className='iconfont search-icon'>&#xe6d7;</i>
                   </span>
-                  {
-                    this.getKeywords()
-                  }
-                </div>
-              </CSSTransition>
-            </NavItem>
-          </NavInner>
-          <NavInner>
-            <NavItem className='nav-icon'>
-              Aa
-            </NavItem>
-            <NavItem className='nav-login'>
-              登录
-            </NavItem>
-          </NavInner>
-        </Nav>
-        <Register>
-          <Button className='nav-register'>注册</Button>
-          <Button className='nav-write'>
-            <i className='iconfont write-icon'>&#xe603;</i>
-            写文章
-          </Button>
-        </Register>
-      </HeaderWrapper>
+                        {
+                          this.getKeywords()
+                        }
+                      </div>
+                    </CSSTransition>
+                  </NavItem>
+                </NavInner>
+                <NavInner>
+                  <NavItem className='nav-icon'>
+                    Aa
+                  </NavItem>
+                  <NavItem className='nav-login'>
+                    <Link to='/signLogin'>登录</Link>
+                  </NavItem>
+                </NavInner>
+              </Nav>
+              <Register>
+                <Button className='nav-register'><Link to='/signLogin'>注册</Link></Button>
+                <Button className='nav-write'>
+                  <i className='iconfont write-icon'>&#xe603;</i>
+                  写文章
+                </Button>
+              </Register>
+            </HeaderWrapper>
+        }
+      </Fragment>
     )
   }
 
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    // console.log('component will update', nextProps)
+  componentWillMount() {
+    const pathname = this.props.location.pathname
+    console.log(pathname)
+    this.setState({
+      show: pathname !== '/signLogin'
+    })
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // console.log('component did update', prevProps)
+  componentDidMount() {
+    this.props.history.listen(route => {
+      this.setState({
+        show: route.pathname !== '/signLogin'
+      })
+    })
+  }
+
+  componentWillUnmount() {
+    console.log('header unmount')
   }
 }
 
@@ -135,4 +160,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header))

@@ -109,8 +109,12 @@ export const NavItem = styled.div`
     margin-right: 2em;
   }
   &.nav-login {
-    color: #969696;
-    margin-right: 1em;
+    > a {
+      color: #969696;
+      margin-right: 1em;
+      text-decoration: none;
+      color: inherit;
+    }
   }
 `
 export const Button = styled.button`
@@ -125,7 +129,10 @@ export const Button = styled.button`
   }
   &.nav-register {
     margin-left: 20px;
-    color: #ea6f5a;
+    >a {
+      color: #ea6f5a;
+      text-decoration: none;
+    }
   }
   &.nav-write {
     margin-left: 15px;
