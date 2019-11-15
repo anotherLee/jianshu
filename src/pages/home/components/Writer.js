@@ -31,7 +31,11 @@ class Writer extends Component {
       <WriterWrapper>
         <div className="title">推荐作者</div>
         {this.renderAuthorList()}
-        <SeeAllAuthor>查看全部</SeeAllAuthor>
+        <SeeAllAuthor>
+          <a target='_blank' href="https://www.jianshu.com/recommendations/users?utm_source=desktop&utm_medium=index-users">
+            查看全部
+          </a>
+        </SeeAllAuthor>
       </WriterWrapper>
     )
   }

@@ -46,6 +46,10 @@ export const NavItem = styled.div`
     color: #333;
     font-size: 17px;
     cursor: pointer;
+    >a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
   
   &.nav-search {

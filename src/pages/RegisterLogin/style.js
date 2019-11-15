@@ -26,6 +26,7 @@ export const Modal = styled('div')`
       display: inline-block;
       padding: 10px;
       border-bottom: 2px solid transparent;
+      cursor: pointer;
       &.active {
         color: #ea6f5a;
         border-bottom: 2px solid #ea6f5a;

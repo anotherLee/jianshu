@@ -7,15 +7,19 @@ import {
   RecommendWrapper,
   ContentItem
 } from '../style'
+import {message} from 'antd'
 
 class Recommend extends Component {
+  handleClick() {
+    message.warning('该功能暂未开放!', 2)
+  }
   render() {
     return (
       <RecommendWrapper>
-        <ContentItem url={choosed}/>
-        <ContentItem url={copyRight}/>
-        <ContentItem url={study}/>
-        <ContentItem url={vip}/>
+        <ContentItem url={choosed} onClick={ this.handleClick }/>
+        <ContentItem url={copyRight} onClick={ this.handleClick }/>
+        <ContentItem url={study} onClick={ this.handleClick }/>
+        <ContentItem url={vip} onClick={ this.handleClick }/>
       </RecommendWrapper>
     )
   }

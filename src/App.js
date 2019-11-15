@@ -8,6 +8,7 @@ import RegisterLogin from "./pages/RegisterLogin"
 import store from "./store"
 import {Provider} from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
+import 'antd/dist/antd.css'
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
       <BrowserRouter>
         <Header/>
         <Route path='/' exact component={Home} />
-        <Route path='/detail/:id' exact component={Detail} />
-        <Route path='/signLogin' component={RegisterLogin} />
+        <Route path='/jianshu/build/detail/:id' exact component={Detail} />
+        <Route path='/jianshu/build/signLogin' component={RegisterLogin} />
       </BrowserRouter>
     </Provider>
   )

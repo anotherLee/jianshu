@@ -148,6 +148,10 @@ export const SeeAllAuthor = styled('button')`
   border-radius: 3px;
   color: #787878;
   cursor: pointer;
+  >a {
+    text-decoration: none;
+    color: inherit;
+  }
   &:focus {
     outline: none;
   }

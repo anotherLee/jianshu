@@ -2,7 +2,7 @@ import {fromJS} from 'immutable'
 import {JUDGE_REGISTER_LOGIN} from './actionTypes'
 
 const defaultState = fromJS({
-  registerOrLogin: 'login'
+  registerOrLogin: 'register'
 })
 
 export default (state = defaultState, action) => {

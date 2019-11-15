@@ -14,11 +14,13 @@ import {connect} from 'react-redux'
 import * as headerActionCreator from './store/actionCreator'
 import {createJudgeRegisterLoginAction} from '../../pages/RegisterLogin/store/actionCreators'
 import { Link, withRouter } from 'react-router-dom'
+import {message} from 'antd'
+
 
 class Header extends Component {
   constructor(props) {
     super(props)
-    this.test = this.test.bind(this)
+    this.handleClick = this.handleClick.bind(this)
     this.state = {
       show: true
     }
@@ -49,11 +51,13 @@ class Header extends Component {
     return null
   }
 
-  test() {
+  handleClick() {
     this.props.judgeRegisterLogin('login')
   }
   render() {
     const { focused, list, onFocus, onBlur } = this.props
+    const isLogin = window.localStorage.getItem('isLogin')
+    const userInfo = window.localStorage.getItem('userInfo')
     return (
       <Fragment>
         {
@@ -67,7 +71,11 @@ class Header extends Component {
               <Nav>
                 <NavInner>
                   <NavItem className='nav-firstPage'><Link to='/jianshu/build'>首页</Link></NavItem>
-                  <NavItem className='nav-download'>下载App</NavItem>
+                  <NavItem className='nav-download'>
+                    <a href="https://www.jianshu.com/apps?utm_medium=desktop&utm_source=navbar-apps" target='_blank'>
+                      下载App
+                    </a>
+                  </NavItem>
                   <NavItem className={`nav-search ${focused ? 'focused' : ''}`}>
                     <CSSTransition in={focused} timeout={300} classNames='move'>
                       <div className="inputWrapper">
@@ -86,14 +94,18 @@ class Header extends Component {
                   <NavItem className='nav-icon'>
                     Aa
                   </NavItem>
-                  <NavItem className='nav-login' onClick={this.test}>
-                    <Link to='/signLogin'>登录</Link>
+                  <NavItem className='nav-login' onClick={this.handleClick}>
+                    <Link to='/signLogin'>{ isLogin === 'true' ? `欢迎 ${JSON.parse(userInfo).name}` : '登录'}</Link>
                   </NavItem>
                 </NavInner>
               </Nav>
               <Register>
-                <Button className='nav-register'><Link to='/signLogin'>注册</Link></Button>
-                <Button className='nav-write'>
+                {
+                  isLogin === 'false'
+                    ? <Button className='nav-register'><Link to='/signLogin'>注册</Link></Button>
+                    : null
+                }
+                <Button className='nav-write' onClick={ e => { message.warning('该功能暂未开放!', 2) }}>
                   <i className='iconfont write-icon'>&#xe603;</i>
                   写文章
                 </Button>
