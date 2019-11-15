@@ -12,11 +12,13 @@ import {
 } from './style'
 import {connect} from 'react-redux'
 import * as headerActionCreator from './store/actionCreator'
+import {createJudgeRegisterLoginAction} from '../../pages/RegisterLogin/store/actionCreators'
 import { Link, withRouter } from 'react-router-dom'
 
 class Header extends Component {
   constructor(props) {
     super(props)
+    this.test = this.test.bind(this)
     this.state = {
       show: true
     }
@@ -47,6 +49,9 @@ class Header extends Component {
     return null
   }
 
+  test() {
+    this.props.judgeRegisterLogin('login')
+  }
   render() {
     const { focused, list, onFocus, onBlur } = this.props
     return (
@@ -81,7 +86,7 @@ class Header extends Component {
                   <NavItem className='nav-icon'>
                     Aa
                   </NavItem>
-                  <NavItem className='nav-login'>
+                  <NavItem className='nav-login' onClick={this.test}>
                     <Link to='/signLogin'>登录</Link>
                   </NavItem>
                 </NavInner>
@@ -101,7 +106,6 @@ class Header extends Component {
 
   componentWillMount() {
     const pathname = this.props.location.pathname
-    console.log(pathname)
     this.setState({
       show: pathname !== '/signLogin'
     })
@@ -116,7 +120,6 @@ class Header extends Component {
   }
 
   componentWillUnmount() {
-    console.log('header unmount')
   }
 }
 
@@ -156,6 +159,9 @@ const mapDispatchToProps = (dispatch) => {
       spin.style.transform = `rotate(${originAngle + 360}deg)`
 
       dispatch(headerActionCreator.createListChangeAction(value))
+    },
+    judgeRegisterLogin(str) {
+      dispatch(createJudgeRegisterLoginAction(str))
     }
   }
 }

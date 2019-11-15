@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
+    font-size: 16px;
   }
   ol, ul {
     list-style: none;
@@ -46,7 +47,6 @@ const GlobalStyle = createGlobalStyle`
   *, *:after, *:before {
     box-sizing: border-box;
     font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-    font-size: 16px;
   }
 `
 export default GlobalStyle
