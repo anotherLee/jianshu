@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/jianshu/build/static/js/main.dbfcfbee.chunk.js",
-    "main.js.map": "/jianshu/build/static/js/main.dbfcfbee.chunk.js.map",
+    "main.js": "/jianshu/build/static/js/main.e8ffa4e5.chunk.js",
+    "main.js.map": "/jianshu/build/static/js/main.e8ffa4e5.chunk.js.map",
     "runtime-main.js": "/jianshu/build/static/js/runtime-main.fb0a505b.js",
     "runtime-main.js.map": "/jianshu/build/static/js/runtime-main.fb0a505b.js.map",
     "static/css/2.0f87f62a.chunk.css": "/jianshu/build/static/css/2.0f87f62a.chunk.css",
     "static/js/2.03dcd693.chunk.js": "/jianshu/build/static/js/2.03dcd693.chunk.js",
     "static/js/2.03dcd693.chunk.js.map": "/jianshu/build/static/js/2.03dcd693.chunk.js.map",
     "index.html": "/jianshu/build/index.html",
-    "precache-manifest.f25454b6b5d18fa935d1857cfb2477c9.js": "/jianshu/build/precache-manifest.f25454b6b5d18fa935d1857cfb2477c9.js",
+    "precache-manifest.a2bead681673476ac8433664aa35a5b4.js": "/jianshu/build/precache-manifest.a2bead681673476ac8433664aa35a5b4.js",
     "service-worker.js": "/jianshu/build/service-worker.js",
     "static/css/2.0f87f62a.chunk.css.map": "/jianshu/build/static/css/2.0f87f62a.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.fb0a505b.js",
     "static/css/2.0f87f62a.chunk.css",
     "static/js/2.03dcd693.chunk.js",
-    "static/js/main.dbfcfbee.chunk.js"
+    "static/js/main.e8ffa4e5.chunk.js"
   ]
 }

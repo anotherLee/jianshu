@@ -126,7 +126,7 @@ class Header extends Component {
   componentDidMount() {
     this.props.history.listen(route => {
       this.setState({
-        show: route.pathname !== '/signLogin'
+        show: route.pathname !== '/jianshu/build/signLogin'
       })
     })
   }
