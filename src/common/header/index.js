@@ -95,14 +95,14 @@ class Header extends Component {
                     Aa
                   </NavItem>
                   <NavItem className='nav-login' onClick={this.handleClick}>
-                    <Link to='/signLogin'>{ isLogin === 'true' ? `欢迎 ${JSON.parse(userInfo).name}` : '登录'}</Link>
+                    <Link to='/jianshu/build/signLogin'>{ isLogin === 'true' ? `欢迎 ${JSON.parse(userInfo).name}` : '登录'}</Link>
                   </NavItem>
                 </NavInner>
               </Nav>
               <Register>
                 {
                   isLogin === 'false'
-                    ? <Button className='nav-register'><Link to='/signLogin'>注册</Link></Button>
+                    ? <Button className='nav-register'><Link to='/jianshu/build/signLogin'>注册</Link></Button>
                     : null
                 }
                 <Button className='nav-write' onClick={ e => { message.warning('该功能暂未开放!', 2) }}>

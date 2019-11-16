@@ -24,7 +24,7 @@ class RecommendArticle extends Component {
             return (
               <RecommendItem key={item.id}>
                 <div className="recommend-title">
-                  <a href={'/detail/' + item.articleId} target='_blank'>{item.title}</a>
+                  <a href={'jianshu/build/detail/' + item.articleId} target='_blank'>{item.title}</a>
                 </div>
                 <div className='info'>
                   喜欢 {item.like}
