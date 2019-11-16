@@ -77,13 +77,7 @@ export const RecommendItem = styled('div')`
   margin-bottom: 15px;
   .recommend-title {
     font-size: 14px; line-height: 22px;
-    >a {
-      text-decoration: none;
-      color: inherit;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+    text-decoration: underline;
   }  
   .info {
     margin-top: 5px; 

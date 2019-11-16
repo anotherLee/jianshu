@@ -100,10 +100,8 @@ class Header extends Component {
                 </NavInner>
               </Nav>
               <Register>
-                {isLogin}
-                { isLogin ? '存在' : '不存在' }
                 {
-                  isLogin === 'false'
+                  isLogin === 'false' || !isLogin
                     ? <Button className='nav-register'><Link to='/jianshu/build/signLogin'>注册</Link></Button>
                     : null
                 }

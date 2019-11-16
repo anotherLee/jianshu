@@ -23,9 +23,7 @@ class RecommendArticle extends Component {
           list.map(item => {
             return (
               <RecommendItem key={item.id}>
-                <div className="recommend-title">
-                  <a href={'/jianshu/build/detail/' + item.articleId} target='_blank'>{item.title}</a>
-                </div>
+                <div className="recommend-title">{item.title}</div>
                 <div className='info'>
                   喜欢 {item.like}
                 </div>
