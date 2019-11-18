@@ -65,12 +65,12 @@ class Header extends Component {
           ? null
           :
             <HeaderWrapper>
-              <Link to='/jianshu/build'>
+              <Link to='/'>
                 <img src={logo} alt=""/>
               </Link>
               <Nav>
                 <NavInner>
-                  <NavItem className='nav-firstPage'><Link to='/jianshu/build'>首页</Link></NavItem>
+                  <NavItem className='nav-firstPage'><Link to='/'>首页</Link></NavItem>
                   <NavItem className='nav-download'>
                     <a href="https://www.jianshu.com/apps?utm_medium=desktop&utm_source=navbar-apps" target='_blank'>
                       下载App
@@ -95,14 +95,14 @@ class Header extends Component {
                     Aa
                   </NavItem>
                   <NavItem className='nav-login' onClick={this.handleClick}>
-                    <Link to='/jianshu/build/signLogin'>{ isLogin === 'true' ? `欢迎 ${JSON.parse(userInfo).name}` : '登录'}</Link>
+                    <Link to='/signLogin'>{ isLogin === 'true' ? `欢迎 ${JSON.parse(userInfo).name}` : '登录'}</Link>
                   </NavItem>
                 </NavInner>
               </Nav>
               <Register>
                 {
                   isLogin === 'false' || !isLogin
-                    ? <Button className='nav-register'><Link to='/jianshu/build/signLogin'>注册</Link></Button>
+                    ? <Button className='nav-register'><Link to='/signLogin'>注册</Link></Button>
                     : null
                 }
                 <Button className='nav-write' onClick={ e => { message.warning('该功能暂未开放!', 2) }}>
@@ -126,7 +126,7 @@ class Header extends Component {
   componentDidMount() {
     this.props.history.listen(route => {
       this.setState({
-        show: route.pathname !== '/jianshu/build/signLogin'
+        show: route.pathname !== '/signLogin'
       })
     })
   }

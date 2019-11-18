@@ -13,7 +13,7 @@ const homeUrl = {
 }
 
 const detailUrl = {
-  getArticle: devOrigin + '/jianshu/build/api/articles.json'
+  getArticle: devOrigin + '/api/articles.json'
 }
 
 export { headerUrl, homeUrl, detailUrl }

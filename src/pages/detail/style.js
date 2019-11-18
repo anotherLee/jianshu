@@ -57,6 +57,7 @@ export const ArticleContent = styled('div')`
       line-height: 1.8;
       margin:32px 0 20px;
       color: rgb(64,64,64);
+      font-size: 16px;
     }
   }
 `
