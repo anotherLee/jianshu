@@ -72,7 +72,7 @@ class Header extends Component {
                 <NavInner>
                   <NavItem className='nav-firstPage'><Link to='/'>首页</Link></NavItem>
                   <NavItem className='nav-download'>
-                    <a href="https://www.jianshu.com/apps?utm_medium=desktop&utm_source=navbar-apps" target='_blank'>
+                    <a rel='noopener noreferrer' href="https://www.jianshu.com/apps?utm_medium=desktop&utm_source=navbar-apps" target='_blank'>
                       下载App
                     </a>
                   </NavItem>

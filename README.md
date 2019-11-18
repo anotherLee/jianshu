@@ -27,7 +27,9 @@ yarn start
 ### 使用到的技术:
 
 - React
+- ant-design
 - Redux
+- axios
 - react-router-dom
 - immutable.js
 - react-redux

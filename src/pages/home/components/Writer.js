@@ -8,9 +8,6 @@ import {
 import { createGetAuthorAction } from '../store/actionCreators'
 
 class Writer extends Component {
-  constructor(props) {
-    super(props)
-  }
   renderAuthorList() {
     const { authorList } = this.props
     const jsAuthorList = authorList.toJS()
@@ -32,7 +29,7 @@ class Writer extends Component {
         <div className="title">推荐作者</div>
         {this.renderAuthorList()}
         <SeeAllAuthor>
-          <a target='_blank' href="https://www.jianshu.com/recommendations/users?utm_source=desktop&utm_medium=index-users">
+          <a rel="noopener noreferrer" target='_blank' href="https://www.jianshu.com/recommendations/users?utm_source=desktop&utm_medium=index-users">
             查看全部
           </a>
         </SeeAllAuthor>

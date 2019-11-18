@@ -7,10 +7,6 @@ import {
 } from './style'
 
 class Detail extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <ArticleWrapper>
